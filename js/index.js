@@ -141,8 +141,8 @@ function commanLogin(){
 	var jsonToDomainNameSend = new Object();
 	var jsonToDomainNameSendEncrypted = new Object();
 	jsonToDomainNameSend["userName"] = domainName;
-	//jsonToDomainNameSend["mobilePlatform"] = device.platform;
-	jsonToDomainNameSend["mobilePlatform"] = "Android";
+	jsonToDomainNameSend["mobilePlatform"] = device.platform;
+	//jsonToDomainNameSend["mobilePlatform"] = "Android";
 	jsonToDomainNameSend["appType"] = "NEXGEN_EXPENZING_TNE_APP";
 	jsonToDomainNameSendEncrypted = encryptDataForUrl(jsonToDomainNameSend,secretKey);
 
