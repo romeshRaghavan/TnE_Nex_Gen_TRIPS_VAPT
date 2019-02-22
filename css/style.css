@@ -3070,7 +3070,7 @@ a.hvr-hollow:hover,a.hvr-hollow:focus,a.hvr-hollow:active {
 @media (max-width:384px){
 	.resp-tab-item {
 		font-size: 11px;
-		width: 25%;
+		width: 33.33%;
 		padding: 17px 0px;
 	}
 	.twitter {
