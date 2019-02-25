@@ -1273,7 +1273,7 @@ function deleteSelectedWallets(walletID){
 }
 
 function saveWalletAttachment(status){
-		j('#loading_Cat').show();
+	j('#loading_Cat').show();
 	try{
 	if (mydb) {
 		//get the values of the text inputs
@@ -1304,7 +1304,6 @@ function saveWalletAttachment(status){
 	alert("Exception in saveWalletAttachment : "+e);
 }
 }
-
 
 
 function getExpenseNamesfromDB(accountHeadId){
