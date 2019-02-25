@@ -989,7 +989,6 @@ function createAccHeadDropDown(jsonAccHeadArr){
 					jsonToSaveTR["ArriveDate"] = tvl__rod_dateOne;
 
 				}
-				alert(JSON.stringify(jsonToSaveTR));
 				saveTravelRequestAjax(jsonToSaveTR);
 			}else{
 				return false;
