@@ -3270,7 +3270,4 @@ function populateMainPage(){
 	j('#loading').hide();
 }
 
-function addTrip(){ 
-	window.location.href = 'app/pages/trips-info.html';
-}
 
