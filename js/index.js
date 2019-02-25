@@ -2031,11 +2031,11 @@ function resetImageData(){
 function capturePhoto(status,voucher_type) {
 
 	voucherType = voucher_type;	
-	navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 10,
-		destinationType: 0 });
-	camerastatus = status;
-
-}
+		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 10,
+            destinationType: 0 });
+		camerastatus = status;
+		
+	}
 
 function onFail(message) {
 
