@@ -1227,31 +1227,32 @@ function deleteSelectedTSExpDetails(travelSettleExpDetailId){
 }
 
 function fetchWalletImage() {
-	var rowsWallet;
-	mytable = j('<table></table>').attr({ id: "walletSource",class: ["table","table-striped","table-bordered-wallet"].join(' ') });
-
-	mydb.transaction(function(t) {
-
-		t.executeSql('SELECT * FROM walletMst;', [],
-			function(transaction, result) {
-
+			var rowsWallet;
+			mytable = j('<table></table>').attr({ id: "walletSource",class: ["table","table-striped","table-bordered-wallet"].join(' ') });
+		 
+			mydb.transaction(function(t) {
+				
+		      t.executeSql('SELECT * FROM walletMst;', [],
+				 function(transaction, result) {
+					
 				if (result != null && result.rows != null) {
-
+					  
 					for (var i = 0; i < result.rows.length; i++) {
 						
-						var row = result.rows.item(i);						 
-
-						if(i % 2 == 0){
-							rowsWallet = j('<tr></tr>').attr({ class: ["test"].join(' ') }).appendTo(mytable);  
-						}				
-
-						j('<td></td>').attr({ class: ["walletattach"].join(' ') }).html('<text style="display: none">'+row.walletAttachment+'</text>'+'<p id="para" style="display: none">'+row.walletId+'</p>'+'<img src="'+row.walletAttachment+'">').appendTo(rowsWallet);
-
-
+					  var row = result.rows.item(i);						 
+					  
+							if(i % 2 == 0){
+								rowsWallet = j('<tr></tr>').attr({ class: ["test"].join(' ') }).appendTo(mytable);  
+							}				
+							
+							//alert("row.walletAttachment : " + row.walletAttachment + "  row.walletId: " +row.walletId+ "  row.walletAttachment: " +row.walletAttachment);
+							j('<td></td>').attr({ class: ["walletattach"].join(' ') }).html('<text style="display: none">'+row.walletAttachment+'</text>'+'<p id="para" style="display: none">'+row.walletId+'</p>'+'<img src="'+row.walletAttachment+'">').appendTo(rowsWallet);
+							
+                        	
 					}	
-					j("#walletSource td").click(function(){
-						headerOprationBtn = defaultPagePath+'headerPageForWalletOperation.html';
-						if(j(this).hasClass( "selected")){
+				j("#walletSource td").click(function(){
+					headerOprationBtn = defaultPagePath+'headerPageForWalletOperation.html';
+					if(j(this).hasClass( "selected")){
 							j(this).removeClass('selected');
 							j('#mainHeader').load(headerOprationBtn);
 						}else{
@@ -1259,10 +1260,10 @@ function fetchWalletImage() {
 							j(this).addClass('selected');					
 						}								
 					});
-				}		
+				  }		
+				});
 			});
-	});
-	mytable.appendTo("#walletBox");	 
+			 mytable.appendTo("#walletBox");	 
 }
 
 function deleteSelectedWallets(walletID){
@@ -1272,32 +1273,36 @@ function deleteSelectedWallets(walletID){
 }
 
 function saveWalletAttachment(status){
-	j('#loading_Cat').show();
+		j('#loading_Cat').show();
+	try{
 	if (mydb) {
 		//get the values of the text inputs
-
+      
 		//var file = document.getElementById('imageWallet').files[0];
-		var file = document.getElementById("imageWallet").src;
-
-		if (file != "") {
-			mydb.transaction(function (t) {
-				t.executeSql("INSERT INTO walletMst (walletAttachment) VALUES (?)", 
-					[file]);
-				if(status == "0"){
+        var file = document.getElementById("imageWallet").src;
+	
+	if (file != "") {
+        mydb.transaction(function (t) {
+            t.executeSql("INSERT INTO walletMst (walletAttachment) VALUES (?)", 
+											[file]);
+                if(status == "0"){
 					document.getElementById('imageWallet').value ="";	
 					createWallet();					
 				}else{
-					createWallet();
+				    createWallet();
 				}
 			});
-			j('#loading_Cat').hide();
-		} else {
-			j('#loading_Cat').hide();
-			alert(window.lang.translate('You must enter inputs!'));
-		}
+            j('#loading_Cat').hide();
+        } else {
+        	j('#loading_Cat').hide();
+            alert(window.lang.translate('You must enter inputs!'));
+        }
 	} else {
-		alert(window.lang.translate('Database not found, your browser does not support web sql!'));
-	}
+         alert(window.lang.translate('Database not found, your browser does not support web sql!'));
+    }
+}catch(e){
+	alert("Exception in saveWalletAttachment : "+e);
+}
 }
 
 
